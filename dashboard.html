@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fuel Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --maxw:1100px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Inter', sans-serif;
+  color:white;
+  min-height:100vh;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(16,185,129,0.35), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(34,197,94,0.30), transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(255,255,255,0.10), transparent 40%),
+    radial-gradient(circle at center, #064e3b, #022c22);
+}
+
+/* ===== HEADER (NOW UNIFIED) ===== */
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(8px);
+  padding:14px 20px;
+  z-index:1000;
+}
+
+.nav{
+  max-width:var(--maxw);
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-family:"Playfair Display";
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+nav a{
+  color:white;
+  margin-left:18px;
+  font-size:14px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.2s;
+}
+
+nav a:hover{
+  opacity:0.8;
+}
+
+/* ===== LAYOUT (FIXED OFFSET FOR HEADER) ===== */
+.container{
+  display:flex;
+  gap:20px;
+  padding:120px 40px 40px;
+}
+
+.left{flex:0.6;}
+.right{flex:0.4;}
+
+.box{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:25px;
+}
+
+/* TEXT */
+h2{margin-bottom:5px;}
+
+.instruction{
+  font-size:13px;
+  color:#d1d5db;
+  margin-bottom:15px;
+}
+
+label{
+  font-size:16px;
+  color:#e5e7eb;
+  margin-bottom:5px;
+  display:block;
+}
+
+.input-row{margin-bottom:12px;}
+
+input{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:transparent;
+  color:white;
+}
+
+/* VEHICLES */
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin:15px 0;
+}
+
+.vehicle{
+  text-align:center;
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.vehicle:hover{
+  background:rgba(255,255,255,0.15);
+}
+
+.vehicle img{
+  height:50px;
+  margin-bottom:6px;
+}
+
+.vehicle.active{
+  border:2px solid #22c55e;
+}
+
+/* BUTTONS */
+.add-btn{
+  width:100%;
+  margin:6px 0;
+  padding:10px;
+  border-radius:14px;
+  border:none;
+  background:#16a34a;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.actions button{
+  padding:12px;
+  border-radius:14px;
+  border:none;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* OUTPUT */
+.output{
+  background:#000;
+  border-radius:14px;
+  padding:15px;
+  height:400px;
+  overflow:auto;
+}
+
+pre{color:#00ff88;}
+
+@media(max-width:900px){
+  .container{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand" onclick="goTo('index.html')">TALA</div>
+    <nav>
+      <a onclick="goTo('index.html')">Home</a>
+      <a onclick="goTo('dashboard.html')">Dashboard</a>
+      <a onclick="goTo('how.html')">How</a>
+      <a onclick="goTo('about.html')">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- LEFT -->
+<div class="box left">
+
+<h2>Fuel Monitoring System</h2>
+<p class="instruction">
+  Enter your trip details, select your vehicle, then analyze your fuel usage.
+</p>
+
+<label>Distance Traveled (km)</label>
+<div class="input-row">
+  <input id="distance">
+</div>
+
+<label>Fuel Consumed (L)</label>
+<div class="input-row">
+  <input id="fuel">
+</div>
+
+<div class="vehicle-grid">
+
+  <div class="vehicle" onclick="setVehicle('motorcycle', this)">
+    <img src="pic/1.png">
+    <p>Motor</p>
+  </div>
+
+  <div class="vehicle" onclick="setVehicle('sedan', this)">
+    <img src="pic/2.png">
+    <p>Sedan</p>
+  </div>
+
+  <div class="vehicle" onclick="setVehicle('suv', this)">
+    <img src="pic/3.png">
+    <p>SUV</p>
+  </div>
+
+  <div class="vehicle" onclick="setVehicle('truck', this)">
+    <img src="pic/4.png">
+    <p>Truck</p>
+  </div>
+
+  <div class="vehicle" onclick="setVehicle('jeep', this)">
+    <img src="pic/5.png">
+    <p>Jeep</p>
+  </div>
+
+</div>
+
+<button class="add-btn" onclick="addRecord()">Add Record</button>
+
+<div class="actions">
+  <button onclick="showHistory()">History</button>
+  <button onclick="showSummary()">Summary</button>
+  <button onclick="analyzeTrend()">Trend</button>
+  <button onclick="clearEverything()">Clear All</button>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="box right">
+<h2>Results</h2>
+<div class="output">
+<pre id="output">Ready...</pre>
+</div>
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

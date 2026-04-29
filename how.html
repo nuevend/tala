@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How It Works - TALA Fuel System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --muted:#d1d5db;
+  --glass:rgba(255,255,255,0.12);
+  --border:rgba(255,255,255,0.25);
+  --radius:16px;
+  --maxw:1100px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:Inter, sans-serif;
+  color:white;
+  min-height:100vh;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(16,185,129,0.35), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(34,197,94,0.30), transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(255,255,255,0.10), transparent 40%),
+    radial-gradient(circle at center, #064e3b, #022c22);
+}
+
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(8px);
+  padding:14px 20px;
+  z-index:1000;
+}
+
+.nav{
+  max-width:var(--maxw);
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-family:"Playfair Display";
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+nav a{
+  color:white;
+  margin-left:18px;
+  font-size:14px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.2s;
+}
+
+nav a:hover{
+  opacity:0.8;
+}
+
+main{
+  max-width:var(--maxw);
+  margin:auto;
+  padding:120px 20px 60px;
+}
+
+.hero-box{
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter:blur(10px);
+  padding:35px;
+  border-radius:var(--radius);
+}
+
+.hero-box h1{
+  font-family:"Playfair Display";
+  font-size:36px;
+  margin-bottom:15px;
+}
+
+.hero-box p{
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:15px;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#e5e7eb;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand" onclick="goTo('index.html')">TALA</div>
+    <nav>
+      <a onclick="goTo('index.html')">Home</a>
+      <a onclick="goTo('dashboard.html')">Dashboard</a>
+      <a onclick="goTo('how.html')">How</a>
+      <a onclick="goTo('about.html')">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="hero-box">
+  <h1>How the System Works</h1>
+
+  <p>
+    The Vehicle Fuel Monitoring System is designed to help users track, analyze, and improve their fuel efficiency through simple inputs and automated calculations.
+  </p>
+
+  <p>
+    To begin, users enter the distance traveled in kilometers and the fuel consumed in liters. After selecting the appropriate vehicle type, the system calculates fuel efficiency by dividing distance by fuel usage. This provides a clear measurement of how efficiently the vehicle is performing.
+  </p>
+
+  <p>
+    The <b>Add Record</b> button stores the current data entry, allowing users to build a history of their trips. This recorded data becomes the foundation for further analysis.
+  </p>
+
+  <p>
+  The system also uses predefined reference values for different vehicle types to provide meaningful comparisons. These values represent the <b>average fuel efficiency (km per liter)</b> for each type of vehicle under normal driving conditions.
+</p>
+
+<p>
+  The system is based on the following reference data:
+</p>
+
+<div style="margin-left:25px;">
+  <ul>
+    <li><b>Motorcycle – 35 km/L</b> (highly fuel-efficient)</li>
+    <li><b>Sedan – 15 km/L</b> (balanced daily use)</li>
+    <li><b>SUV – 10 km/L</b> (higher fuel consumption)</li>
+    <li><b>Truck – 6 km/L</b> (heavy-duty, lowest efficiency)</li>
+    <li><b>Jeep – 8 km/L</b> (moderate efficiency)</li>
+  </ul>
+</div>
+
+<p>
+  These values are based on <b>general real-world averages</b> commonly observed across vehicle categories. They are not exact for every model, but they provide a reliable baseline for comparison.
+</p>
+
+<p>
+  By comparing the user's actual fuel efficiency with these reference values, the system can determine whether the vehicle is performing efficiently, below average, or wasting fuel.
+</p>
+
+  <p>
+    The <b>History</b> function displays all saved entries, helping users review past trips and observe patterns in their fuel consumption over time.
+  </p>
+
+  <p>
+    The <b>Summary</b> feature provides an overview of the user’s fuel performance. It calculates averages and highlights general efficiency trends, making it easier to understand overall vehicle performance.
+  </p>
+
+  <p>
+    The <b>Trend</b> function analyzes changes in fuel usage across multiple records. It helps users determine whether their efficiency is improving, declining, or remaining consistent.
+  </p>
+
+  <p>
+    Lastly, the <b>Clear All</b> button removes all stored data, allowing users to reset the system and start fresh.
+  </p>
+
+</div>
+
+</main>
+
+<footer>
+  Vehicle Fuel Monitoring System
+</footer>
+
+<script>
+function goTo(page){
+  window.location.href = page;
+}
+</script>
+
+</body>
+</html>
