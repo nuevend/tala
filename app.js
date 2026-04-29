@@ -2,10 +2,6 @@ function goTo(page) {
     window.location.href = page;
 }
 
-// -----------------------------
-// GLOBALS
-// -----------------------------
-
 let records = [];
 let currentVehicle = null;
 
@@ -17,22 +13,13 @@ const VEHICLES = {
     jeep: 8
 };
 
-// -----------------------------
-// OUTPUT
-// -----------------------------
-
 function print(text) {
     document.getElementById("output").textContent = text;
 }
 
-// -----------------------------
-// VEHICLE SELECT (FIXED)
-// -----------------------------
-
 function setVehicle(vehicle, element) {
     currentVehicle = vehicle;
 
-    // highlight selected button
     document.querySelectorAll(".vehicle").forEach(v => {
         v.classList.remove("active");
     });
@@ -41,10 +28,6 @@ function setVehicle(vehicle, element) {
 
     print("Selected vehicle: " + vehicle.toUpperCase());
 }
-
-// -----------------------------
-// ADD RECORD
-// -----------------------------
 
 function addRecord() {
     let distance = parseFloat(document.getElementById("distance").value);
@@ -73,10 +56,6 @@ function addRecord() {
     print(`Record added\nEfficiency: ${efficiency.toFixed(2)} km/L`);
 }
 
-// -----------------------------
-// HISTORY
-// -----------------------------
-
 function showHistory() {
     if (records.length === 0) {
         print("No records yet.");
@@ -91,10 +70,6 @@ function showHistory() {
 
     print(text);
 }
-
-// -----------------------------
-// SUMMARY
-// -----------------------------
 
 function showSummary() {
     if (!records.length) return print("No data.");
@@ -123,10 +98,6 @@ function showSummary() {
     print(text);
 }
 
-// -----------------------------
-// TREND
-// -----------------------------
-
 function analyzeTrend() {
     if (records.length < 2) return print("Not enough data.");
 
@@ -144,15 +115,10 @@ function analyzeTrend() {
     print(text);
 }
 
-// -----------------------------
-// CLEAR EVERYTHING (NEW)
-// -----------------------------
-
 function clearEverything() {
     records = [];
     currentVehicle = null;
 
-    // remove active highlight
     document.querySelectorAll(".vehicle").forEach(v => {
         v.classList.remove("active");
     });
